@@ -20,7 +20,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2023011001;        // The current plugin version (Date: YYYYMMDDXX)
+$plugin->version   = 2023070501;        // The current plugin version (Date: YYYYMMDDXX)
 $plugin->requires  = 2017051500;        // Requires this Moodle version
 $plugin->component = 'enrol_payhere';    // Full name of the plugin (used for diagnostics)
 $plugin->cron      = 60;

@@ -432,7 +432,7 @@ class enrol_payhere_plugin extends enrol_plugin {
         $tovalidate = array(
             'name' => PARAM_TEXT,
             'payheremerchantid' => PARAM_INT,
-            'payheremerchantsecret' => PARAM_ALPHANUM,
+            'payheremerchantsecret' => PARAM_RAW_TRIMMED,
             'payheresandbox' => array(0, 1),
             'status' => $validstatus,
             'currency' => $validcurrency,

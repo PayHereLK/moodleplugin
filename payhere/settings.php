@@ -28,7 +28,7 @@ if ($ADMIN->fulltree) {
     $settings->add(new admin_setting_heading('enrol_payhere_settings', '', get_string('pluginname_desc', 'enrol_payhere')));
 
     $settings->add(new admin_setting_configtext('enrol_payhere/payheremerchantid', get_string('merchant_id', 'enrol_payhere'), get_string('merchant_id_desc', 'enrol_payhere'), '', PARAM_INT));
-    $settings->add(new admin_setting_configtext('enrol_payhere/payheremerchantsecret', get_string('merchant_secret', 'enrol_payhere'), get_string('merchant_secret_desc', 'enrol_payhere'), '', PARAM_ALPHANUM));
+    $settings->add(new admin_setting_configtext('enrol_payhere/payheremerchantsecret', get_string('merchant_secret', 'enrol_payhere'), get_string('merchant_secret_desc', 'enrol_payhere'), '', PARAM_RAW_TRIMMED));
     $settings->add(new admin_setting_configcheckbox('enrol_payhere/payheresandbox', get_string('payheresandbox', 'enrol_payhere'), '', 0));
 
     $settings->add(new admin_setting_configcheckbox('enrol_payhere/mailstudents', get_string('mailstudents', 'enrol_payhere'), '', 0));
