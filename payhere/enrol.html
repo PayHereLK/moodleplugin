@@ -1,0 +1,53 @@
+<div align="center">
+
+<p><?php print_string("paymentrequired") ?></p>
+<p><b><?php echo $instancename; ?></b></p>
+<p><b><?php echo get_string("cost").": {$instance->currency} {$localisedcost}"; ?></b></p>
+<p><?php print_string("paymentinstant") ?></p>
+<?php
+    $use_sandbox = $this->get_config('payheresandbox');
+    $payhereurl = '';
+    if ($use_sandbox){
+        $payhereurl = 'https://sandbox.payhere.lk/pay/checkout';
+    }
+    else {
+        $payhereurl = 'https://www.payhere.lk/pay/checkout';
+    }
+
+    $merchant_id = $this->get_config('payheremerchantid');
+    $order_timestamp = time();
+    $order_id = "payhere_{$USER->id}_{$course->id}_{$order_timestamp}";
+    $payhere_amount = $cost;
+    $payhere_currency = $instance->currency;
+    $payhere_secret = $this->get_config('payheremerchantsecret');
+    $frontend_hash = strtoupper (md5 ( $merchant_id . $order_id . $payhere_amount . $payhere_currency . strtoupper(md5($payhere_secret)) ) )
+?>
+<form action="<?php echo $payhereurl ?>" method="post">
+
+<input type="hidden" name="merchant_id" value="<?php echo $merchant_id ?>">
+<input type="hidden" name="return_url" value="<?php echo "$CFG->wwwroot/enrol/payhere/return.php?id=$course->id" ?>">
+<input type="hidden" name="cancel_url" value="<?php echo $CFG->wwwroot ?>">
+<input type="hidden" name="notify_url" value="<?php echo "$CFG->wwwroot/enrol/payhere/notify.php"?>">  
+
+<input type="hidden" name="order_id" value="<?php echo $order_id ?>">
+<input type="hidden" name="items" value="<?php echo "Course {$courseshortname} Payment" ?>">
+<input type="hidden" name="currency" value="<?php p($payhere_currency) ?>">
+<input type="hidden" name="amount" value="<?php p($payhere_amount) ?>">  
+
+<input type="hidden" name="first_name" value="<?php p($userfirstname) ?>" />
+<input type="hidden" name="last_name" value="<?php p($userlastname) ?>" />
+<input type="hidden" name="email" value="<?php p($USER->email) ?>" />
+<input type="hidden" name="phone" value="">
+<input type="hidden" name="address" value="<?php p($useraddress) ?>" />
+<input type="hidden" name="city" value="<?php p($usercity) ?>" />
+<input type="hidden" name="country" value="<?php p($USER->country) ?>" />
+
+<input type="hidden" name="custom_1" value="<?php echo "{$USER->id}-{$course->id}-{$instance->id}" ?>" />
+
+<input type="hidden" name="hash" value="<?php echo $frontend_hash ?>">
+
+<input type="image" src="https://www.payhere.lk/downloads/images/pay_with_payhere_light.png" width="180" alt="<?php print_string("sendpaymentbutton", "enrol_payhere") ?>" />
+
+</form>
+
+</div>

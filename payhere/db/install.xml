@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="enrol/payhere/db" VERSION="20180625" COMMENT="XMLDB file for Moodle enrol/payhere"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="enrol_payhere" COMMENT="Holds all known information about PayHere transactions">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="merchant_id" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="order_id" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" />
+        <FIELD NAME="payment_id" TYPE="int" LENGTH="20" NOTNULL="true" DEFAULT="0" SEQUENCE="false" />
+        <FIELD NAME="payhere_currency" TYPE="char" LENGTH="10" NOTNULL="true" SEQUENCE="false" />
+        <FIELD NAME="payhere_amount" TYPE="char" LENGTH="10" NOTNULL="true" SEQUENCE="false" />
+        <FIELD NAME="status_code" TYPE="char" LENGTH="10" NOTNULL="true" SEQUENCE="false" />
+        <FIELD NAME="method" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false" />
+        <FIELD NAME="status_message" TYPE="char" LENGTH="500" NOTNULL="true" SEQUENCE="false" />
+        <FIELD NAME="card_holder_name" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false" />
+        <FIELD NAME="card_holder_no" TYPE="char" LENGTH="50" NOTNULL="false" SEQUENCE="false" />
+        <FIELD NAME="card_holder_expiry" TYPE="char" LENGTH="10" NOTNULL="false" SEQUENCE="false" />
+        <FIELD NAME="custom_1" TYPE="char" LENGTH="20" NOTNULL="false" SEQUENCE="false" />
+        <FIELD NAME="local_md5sig" TYPE="char" LENGTH="33" NOTNULL="false" SEQUENCE="false" />
+        <FIELD NAME="md5sig" TYPE="char" LENGTH="33" NOTNULL="false" SEQUENCE="false" />
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="instanceid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="plugin_processed" TYPE="char" LENGTH="15" NOTNULL="false" DEFAULT="no" SEQUENCE="false"/>
+        <FIELD NAME="timeupdated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>
